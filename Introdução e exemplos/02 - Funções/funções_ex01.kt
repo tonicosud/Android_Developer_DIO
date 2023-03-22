@@ -1,23 +1,26 @@
 /**
- * Funções com parâmetros [vararg].
-*/
+ * Valores de parâmetro padrão e argumentos nomeados.
+ */
+
+fun printMessage(message: String): Unit {                               // 1
+    println(message)
+}
+
+fun printMessageWithPrefix(message: String, prefix: String = "Info") {  // 2
+    println("[$prefix] $message")
+}
+
+fun sum(x: Int, y: Int): Int {                                          // 3
+    return x + y
+}
+
+fun multiply(x: Int, y: Int) = x * y                                    // 4
+
 fun main() {
-
-    fun printAll(vararg messages: String) {                            // 1
-        for (m in messages) println(m)
-    }
-    printAll("Hello", "Olá", "Salut", "Hola", "你好")                  // 2
-
-    fun printAllWithPrefix(vararg messages: String, prefix: String) {  // 3
-        for (m in messages) println(prefix + m)
-    }
-    printAllWithPrefix(
-        "Hello", "Olá", "Salut", "Hola", "你好",
-        prefix = "Greeting: "                                      // 4
-    )
-
-    fun log(vararg entries: String) {
-        printAll(*entries)                                             // 5
-    }
-
+    printMessage("Hello")                                               // 5
+    printMessageWithPrefix("Hello", "Log")                              // 6
+    printMessageWithPrefix("Hello")                                     // 7
+    printMessageWithPrefix(prefix = "Log", message = "Hello")           // 8
+    println(sum(1, 2))                                                  // 9
+    println(multiply(2, 4))                                             // 10
 }
