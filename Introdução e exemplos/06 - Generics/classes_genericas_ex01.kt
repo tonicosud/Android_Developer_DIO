@@ -1,5 +1,5 @@
 /**
- * Funções Genéricas.
+ * Classes Genéricas.
 */
 
 class MutableStack<E>(vararg items: E) {              // 1
@@ -19,9 +19,17 @@ class MutableStack<E>(vararg items: E) {              // 1
     override fun toString() = "MutableStack(${elements.joinToString()})"
 }
 
-fun <E> mutableStackOf(vararg elements: E) = MutableStack(*elements)
 
 fun main() {
-    val stack = mutableStackOf(0.62, 3.14, 2.7)
+    val stack = MutableStack("A", "B", "C")
+    stack.push("D")
     println(stack)
+
+    println("peek(): ${stack.peek()}")
+    println(stack)
+
+    for (i in 1..stack.size()) {
+        println("pop(): ${stack.pop()}")
+        println(stack)
+    }
 }
