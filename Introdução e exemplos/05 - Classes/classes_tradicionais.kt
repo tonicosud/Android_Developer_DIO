@@ -1,35 +1,19 @@
 /**
- * Classes Genéricas.
- */
+ * Classes Tradicionais.
+*/
 
-class MutableStack<E>(vararg items: E) {              // 1
+class Customer                                  // 1
 
-    private val elements = items.toMutableList()
-
-    fun push(element: E) = elements.add(element)        // 2
-
-    fun peek(): E = elements.last()                     // 3
-
-    fun pop(): E = elements.removeAt(elements.size - 1)
-
-    fun isEmpty() = elements.isEmpty()
-
-    fun size() = elements.size
-
-    override fun toString() = "MutableStack(${elements.joinToString()})"
-}
-
+class Contact(val id: Int, var email: String)   // 2
 
 fun main() {
-    val stack = MutableStack("A", "B", "C")
-    stack.push("D")
-    println(stack)
 
-    println("peek(): ${stack.peek()}")
-    println(stack)
+    val customer = Customer()                   // 3
 
-    for (i in 1..stack.size()) {
-        println("pop(): ${stack.pop()}")
-        println(stack)
-    }
+    val contact = Contact(1, "mary@gmail.com")  // 4
+
+    println(contact.id)                         // 5
+    println(contact.email)
+    contact.email = "jane@gmail.com"            // 6
+    println(contact.email)
 }
