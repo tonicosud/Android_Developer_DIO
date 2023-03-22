@@ -1,9 +1,19 @@
 /**
- * Hello, World!
- */
+ * Classes Tradicionais.
+*/
 
-package me.mypackage.helloworld           // 1. Definição do pacote (opcional).
+class Customer                                  // 1
 
-fun main() {                        // 2. Ponto de entrada de um código Kotlin, definido pela função [main].
-    println("Hello, World!")        // 3. Imprime na saída padrão um texto usando a função [println]
+class Contact(val id: Int, var email: String)   // 2
+
+fun main() {
+
+    val customer = Customer()                   // 3
+    
+    val contact = Contact(1, "mary@gmail.com")  // 4
+
+    println(contact.id)                         // 5
+    println(contact.email)
+    contact.email = "jane@gmail.com"            // 6
+    println(contact.email)
 }
