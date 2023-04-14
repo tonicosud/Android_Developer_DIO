@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Carros Elétricos</string>
+    <string name="title">Carros Elétricos</string>
+    <string name="tab_car">Carros</string>
+    <string name="tab_fav">Favoritos</string>
+    <string name="preco">Preço</string>
+    <string name="bateria">Bateria</string>
+    <string name="potencia">Potência</string>
+    <string name="torque">Torque</string>
+    <string name="autonomia">Autonomia</string>
+    <string name="recarga_completa">Recarga completa</string>
+    <string name="arranque">De 0 a 100 km</string>
+    <string name="calcular">Calcular</string>
+    <string name="km_percorrido">Km percorrido</string>
+    <string name="preco_por_km">Preço por km</string>
+</resources>
