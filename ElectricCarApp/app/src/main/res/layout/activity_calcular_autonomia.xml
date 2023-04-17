@@ -5,6 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="26dp"
+        android:layout_height="28dp"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_close" />
+
+
+    <EditText
+        android:id="@+id/et_title"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="@string/calcular_autonomia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_close" />
+
     <EditText
         android:id="@+id/et_preco_kmh"
         android:layout_width="0dp"
@@ -17,7 +40,7 @@
         android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/et_title"
         />
 
     <EditText
@@ -49,8 +72,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
+        android:textStyle="bold"
+        style="@style/TextAppearance.MaterialComponents.Subtitle2"
         app:layout_constraintStart_toStartOf="@+id/btn_calcular"
         app:layout_constraintTop_toBottomOf="@id/btn_calcular"
+        android:maxLength="4"
         />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

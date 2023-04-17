@@ -11,6 +11,7 @@
     <string name="recarga_completa">Recarga completa</string>
     <string name="arranque">De 0 a 100 km</string>
     <string name="calcular">Calcular</string>
-    <string name="km_percorrido">Km percorrido</string>
-    <string name="preco_por_km">Preço por km</string>
+    <string name="km_percorrido">Km percorridos</string>
+    <string name="preco_por_km">Preço por kWh</string>
+    <string name="calcular_autonomia">Calcular autonomia</string>
 </resources>
