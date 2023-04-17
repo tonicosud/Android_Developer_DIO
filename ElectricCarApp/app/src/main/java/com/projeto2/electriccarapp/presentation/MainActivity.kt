@@ -10,29 +10,23 @@ import com.projeto2.electriccarapp.R
 
 class MainActivity : AppCompatActivity() {
 
-    lateinit var preco: EditText
-    lateinit var kmpercorrido: EditText
-    lateinit var btncalcular: Button
-    lateinit var resultado : TextView
+    lateinit var btn_tela_calculo: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        setupView()
-        calculaAutonomia()
+        setup_View()
+        gotoAutonomia()
+    }
+
+    fun setup_View(){
+        btn_tela_calculo = findViewById(R.id.btn_tela_calculo)
 
     }
 
-    fun setupView(){
-        preco = findViewById(R.id.et_preco_kmh)
-        kmpercorrido = findViewById(R.id.et_km_percorrido)
-        btncalcular = findViewById(R.id.btn_calcular)
-        resultado = findViewById(R.id.tv_resultado)
+    fun gotoAutonomia(){
 
-    }
-
-    fun calculaAutonomia(){
-        btncalcular.setOnClickListener{
+        btn_tela_calculo.setOnClickListener{
             //calcular()
             startActivity(Intent(this,CalcularAutonomiaActivity::class.java))
 
@@ -41,12 +35,5 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun calcular(){
-        val preco = preco.text.toString().toFloat()
-        val km = kmpercorrido.text.toString().toFloat()
 
-        val autonomia = preco / km
-
-        resultado.text = autonomia.toString()
-    }
 }
