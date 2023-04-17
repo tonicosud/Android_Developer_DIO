@@ -1,11 +1,11 @@
-package com.projeto2.electriccarapp
+package com.projeto2.electriccarapp.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import com.projeto2.electriccarapp.R
 
 class MainActivity : AppCompatActivity() {
 
