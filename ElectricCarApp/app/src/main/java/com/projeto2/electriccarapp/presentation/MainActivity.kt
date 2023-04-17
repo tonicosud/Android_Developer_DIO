@@ -1,5 +1,6 @@
 package com.projeto2.electriccarapp.presentation
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
@@ -32,7 +33,8 @@ class MainActivity : AppCompatActivity() {
 
     fun calculaAutonomia(){
         btncalcular.setOnClickListener{
-            calcular()
+            //calcular()
+            startActivity(Intent(this,CalcularAutonomiaActivity::class.java))
 
 
         }
