@@ -1,8 +1,6 @@
-package com.projeto2.electriccarapp.presentation
+package com.projeto2.electriccarapp.ui
 
-import android.content.Intent
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
