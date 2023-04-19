@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.projeto2.electriccarapp.R
 import com.projeto2.electriccarapp.data.CarFactory
+import com.projeto2.electriccarapp.domain.Carro
 import com.projeto2.electriccarapp.ui.adapter.CarAdapter
 import org.json.JSONArray
 import org.json.JSONObject
@@ -31,6 +32,8 @@ class CarFragment : Fragment () {
     lateinit var fabCalcular: FloatingActionButton
     lateinit var listaCarros: RecyclerView
 
+    var carrosArray : ArrayList<Carro> = ArrayList()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -41,8 +44,8 @@ class CarFragment : Fragment () {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        callService()
         setupView(view)
-        setupLista()
         setupListeners()
     }
 
@@ -54,19 +57,22 @@ class CarFragment : Fragment () {
     }
 
     fun setupLista(){
-        val adapter = CarAdapter(CarFactory.list)
+        val adapter = CarAdapter(carrosArray)
         listaCarros.adapter = adapter
 
     }
 
     fun setupListeners(){
         fabCalcular.setOnClickListener{
-            MyTask().execute("https://igorbag.github.io/cars-api/cars.json")
-            //calcular()
-            //startActivity(Intent(context,CalcularAutonomiaActivity::class.java))
+            startActivity(Intent(context,CalcularAutonomiaActivity::class.java))
 
         }
 
+    }
+
+    fun callService(){
+        val urlBase = "https://igorbag.github.io/cars-api/cars.json"
+        MyTask().execute(urlBase)
     }
 
     inner class MyTask : AsyncTask<String, String, String>(){
@@ -85,10 +91,20 @@ class CarFragment : Fragment () {
                 urlConnection = urlBase.openConnection() as HttpURLConnection
                 urlConnection.connectTimeout = 60000
                 urlConnection.readTimeout = 60000
+                urlConnection.setRequestProperty(
+                    "Accept",
+                    "application/json"
+                )
 
-                var response = urlConnection.inputStream.bufferedReader().use{it.readText()}
-                publishProgress(response)
+                val responseCode = urlConnection.responseCode
 
+                if(responseCode==HttpURLConnection.HTTP_OK){
+                    var response = urlConnection.inputStream.bufferedReader().use{it.readText()}
+                    publishProgress(response)
+
+                }else {
+                    Log.e("Erro", "Serviço indisponível...")
+                }
             } catch (ex:Exception){
                 Log.e("Erro", "Erro ao realizar processamento...")
             }finally {
@@ -120,16 +136,27 @@ class CarFragment : Fragment () {
                     val recarga = jsonArray.getJSONObject(i).getString("recarga")
                     Log.d("Recarga ->", recarga)
 
-                    val url = jsonArray.getJSONObject(i).getString("urlPhoto")
-                    Log.d("URL ->", url)
+                    val urlPhoto = jsonArray.getJSONObject(i).getString("urlPhoto")
+                    Log.d("URL ->", urlPhoto)
+
+                    val model = Carro(
+                        id = id.toInt(),
+                        preco = preco,
+                        bateria = bateria,
+                        potencia = potencia,
+                        recarga = recarga,
+                        urlPhoto = urlPhoto
+
+                    )
+                    carrosArray.add(model)
 
                 }
-
+                setupLista()
             }catch (ex: Exception){
-
+                Log.e("Erro", ex.message.toString())
             }
         }
-        
+
     }
 
 }
