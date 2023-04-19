@@ -14,4 +14,7 @@
     <string name="km_percorrido">Km percorridos</string>
     <string name="preco_por_km">Preço por kWh</string>
     <string name="calcular_autonomia">Calcular autonomia</string>
+    <string name="no_wifi">Ops, internet não disponível ):</string>
+    <string name="response_error">Algo deu errado, por favor tente novamente mais tarde</string>
+    <string name="saved_calc">saved_calc</string>
 </resources>

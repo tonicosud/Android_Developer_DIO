@@ -1,7 +1,11 @@
 package com.projeto2.electriccarapp.ui
 
+import android.content.Context
 import android.content.Intent
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
 import android.os.AsyncTask
+import android.os.Build
 import android.os.Bundle
 import android.util.Base64InputStream
 import android.util.Log
@@ -9,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
+import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.loader.content.AsyncTaskLoader
 import androidx.recyclerview.widget.RecyclerView
@@ -48,6 +53,7 @@ class CarFragment : Fragment () {
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
         setupListeners()
+        checkForInternet(context)
         callService()
     }
 
@@ -82,6 +88,30 @@ class CarFragment : Fragment () {
     fun callService(){
         val urlBase = "https://igorbag.github.io/cars-api/cars.json"
         MyTask().execute(urlBase)
+    }
+
+    fun checkForInternet(context: Context?): Boolean{
+        val connectivityManager = context?.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.M){
+
+            val network = connectivityManager.activeNetwork ?: return false
+
+            val activeNetwork = connectivityManager.getNetworkCapabilities(network) ?: return false
+
+            return when{
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                else -> false
+            }
+
+        }else{
+            @Suppress("DEPRECATION")
+            val networkinfo = connectivityManager.activeNetworkInfo ?: return false
+            @Suppress("DEPRECATION")
+            return networkinfo.isConnected
+
+        }
     }
 
     inner class MyTask : AsyncTask<String, String, String>(){
