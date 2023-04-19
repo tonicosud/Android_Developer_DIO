@@ -129,25 +129,7 @@ class CarFragment : Fragment () {
 
             }
         }
-
-        fun streamToString(inputStream: InputStream) : String{
-
-            val bufferReader=BufferedReader(InputStreamReader(inputStream))
-            var line: String
-            var result = ""
-
-            try {
-                do{
-                    line = bufferReader.readLine()
-                    line?.let {
-                        result += line
-                    }
-                } while (line != null)
-            } catch (ex: Exception){
-                Log.e("Erro", "Erro ao parcelar Stream")
-            }
-            return result
-        }
+        
     }
 
 }
