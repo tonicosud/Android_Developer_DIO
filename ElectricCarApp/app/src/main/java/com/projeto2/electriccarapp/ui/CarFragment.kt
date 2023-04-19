@@ -12,7 +12,9 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.ProgressBar
+import android.widget.TextView
 import androidx.core.content.getSystemService
 import androidx.fragment.app.Fragment
 import androidx.loader.content.AsyncTaskLoader
@@ -38,6 +40,8 @@ class CarFragment : Fragment () {
     lateinit var fabCalcular: FloatingActionButton
     lateinit var listaCarros: RecyclerView
     lateinit var progress: ProgressBar
+    lateinit var noInternetImage: ImageView
+    lateinit var noInternetText: TextView
 
     var carrosArray : ArrayList<Carro> = ArrayList()
 
@@ -53,8 +57,23 @@ class CarFragment : Fragment () {
         super.onViewCreated(view, savedInstanceState)
         setupView(view)
         setupListeners()
-        checkForInternet(context)
-        callService()
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+        if(checkForInternet(context)){
+            callService()
+        }else{
+            emptyState()
+        }
+    }
+
+    fun emptyState(){
+        progress.visibility = View.GONE
+        listaCarros.visibility = View.GONE
+        noInternetImage.visibility= View.VISIBLE
+        noInternetText.visibility=View.VISIBLE
     }
 
     fun setupView(view: View) {
@@ -62,6 +81,8 @@ class CarFragment : Fragment () {
             fabCalcular = findViewById(R.id.fab_calcular)
             listaCarros = findViewById(R.id.rv_lista_carros)
             progress = findViewById(R.id.pb_loader)
+            noInternetText = findViewById(R.id.tv_no_wifi)
+            noInternetImage = findViewById(R.id.iv_empty_state)
         }
     }
 
@@ -189,11 +210,13 @@ class CarFragment : Fragment () {
 
                     )
                     carrosArray.add(model)
-                    progress.visibility = View.GONE
-
-
                 }
+                progress.visibility = View.GONE
+                noInternetImage.visibility= View.GONE
+                noInternetText.visibility=View.GONE
+
                 setupLista()
+                
             }catch (ex: Exception){
                 Log.e("Erro", ex.message.toString())
             }
