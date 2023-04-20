@@ -26,6 +26,13 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.projeto2.electriccarapp.R
 import com.projeto2.electriccarapp.data.CarFactory
 import com.projeto2.electriccarapp.data.CarsApi
+import com.projeto2.electriccarapp.data.local.CarrosContract
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_PRECO
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_RECARGA
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_URL_PHOTO
+import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.TABLE_NAME
 import com.projeto2.electriccarapp.data.local.CarsDbHelper
 import com.projeto2.electriccarapp.domain.Carro
 import com.projeto2.electriccarapp.ui.adapter.CarAdapter
@@ -278,10 +285,19 @@ class CarFragment : Fragment () {
 
     }
 
-    fun saveOnDataBase(){
+    fun saveOnDataBase(carro: Carro){
         val dbHelper = CarsDbHelper(requireContext())
+        val db = dbHelper.writableDatabase
 
-        val values = ContentValues().apply {  }
+        val values = ContentValues().apply {
+            put(COLUMN_NAME_PRECO, carro.preco)
+            put(COLUMN_NAME_BATERIA, carro.bateria)
+            put(COLUMN_NAME_POTENCIA, carro.potencia)
+            put(COLUMN_NAME_RECARGA, carro.recarga)
+            put(COLUMN_NAME_URL_PHOTO, carro.urlPhoto)
+        }
+
+        val newRegister = db?.insert(TABLE_NAME, null, values)
     }
 
 }
