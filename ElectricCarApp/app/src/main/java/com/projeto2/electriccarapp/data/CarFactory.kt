@@ -11,7 +11,8 @@ object CarFactory {
             bateria = "30,8 kWh",
             potencia = "61 cv",
             recarga = "5h",
-            urlPhoto = "www.google.com.br"
+            urlPhoto = "www.google.com.br",
+            isFavorite = false
         ),
 
         Carro(
@@ -20,7 +21,8 @@ object CarFactory {
             bateria = "40,5 kWh",
             potencia = "75 cv",
             recarga = "6h",
-            urlPhoto = "www.google.com.br"
+            urlPhoto = "www.google.com.br",
+            isFavorite = false
     )
     )
 }

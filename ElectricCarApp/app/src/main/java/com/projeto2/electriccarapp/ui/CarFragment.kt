@@ -140,6 +140,10 @@ class CarFragment : Fragment () {
 
         }
 
+        carrosAdapter.carItemListner = {carro ->
+            val bateria = carro.bateria
+        }
+
     }
 
     fun setupListeners(){
@@ -253,7 +257,8 @@ class CarFragment : Fragment () {
                         bateria = bateria,
                         potencia = potencia,
                         recarga = recarga,
-                        urlPhoto = urlPhoto
+                        urlPhoto = urlPhoto,
+                        isFavorite = false
 
                     )
                     carrosArray.add(model)
