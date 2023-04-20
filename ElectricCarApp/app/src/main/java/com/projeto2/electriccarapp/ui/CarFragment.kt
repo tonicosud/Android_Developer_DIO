@@ -26,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.projeto2.electriccarapp.R
 import com.projeto2.electriccarapp.data.CarFactory
 import com.projeto2.electriccarapp.data.CarsApi
+import com.projeto2.electriccarapp.data.local.CarRepository
 import com.projeto2.electriccarapp.data.local.CarrosContract
 import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_BATERIA
 import com.projeto2.electriccarapp.data.local.CarrosContract.CarEntry.COLUMN_NAME_POTENCIA
@@ -149,8 +150,8 @@ class CarFragment : Fragment () {
 
         }
 
-        carrosAdapter.carItemListner = {carro ->
-            val bateria = carro.bateria
+        carrosAdapter.carItemListner = { carro ->
+            val isSaved = CarRepository(requireContext()).save(carro)
         }
 
     }
@@ -283,21 +284,6 @@ class CarFragment : Fragment () {
             }
         }
 
-    }
-
-    fun saveOnDataBase(carro: Carro){
-        val dbHelper = CarsDbHelper(requireContext())
-        val db = dbHelper.writableDatabase
-
-        val values = ContentValues().apply {
-            put(COLUMN_NAME_PRECO, carro.preco)
-            put(COLUMN_NAME_BATERIA, carro.bateria)
-            put(COLUMN_NAME_POTENCIA, carro.potencia)
-            put(COLUMN_NAME_RECARGA, carro.recarga)
-            put(COLUMN_NAME_URL_PHOTO, carro.urlPhoto)
-        }
-
-        val newRegister = db?.insert(TABLE_NAME, null, values)
     }
 
 }
