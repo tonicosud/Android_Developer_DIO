@@ -1,5 +1,6 @@
 package com.projeto2.electriccarapp.ui
 
+import android.content.ContentValues
 import android.content.Context
 import android.content.Intent
 import android.net.ConnectivityManager
@@ -25,6 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.projeto2.electriccarapp.R
 import com.projeto2.electriccarapp.data.CarFactory
 import com.projeto2.electriccarapp.data.CarsApi
+import com.projeto2.electriccarapp.data.local.CarsDbHelper
 import com.projeto2.electriccarapp.domain.Carro
 import com.projeto2.electriccarapp.ui.adapter.CarAdapter
 import org.json.JSONArray
@@ -274,6 +276,12 @@ class CarFragment : Fragment () {
             }
         }
 
+    }
+
+    fun saveOnDataBase(){
+        val dbHelper = CarsDbHelper(requireContext())
+
+        val values = ContentValues().apply {  }
     }
 
 }
