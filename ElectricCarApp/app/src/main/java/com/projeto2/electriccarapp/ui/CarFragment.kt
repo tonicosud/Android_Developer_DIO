@@ -91,7 +91,7 @@ class CarFragment : Fragment () {
     }
 
     fun getAllCars(){
-
+        progress.isVisible = true
         carsApi.getAllCars().enqueue(object : Callback<List<Carro>>{
             override fun onResponse(call: Call<List<Carro>>, response: Response<List<Carro>>) {
                 if (response.isSuccessful){
@@ -103,11 +103,13 @@ class CarFragment : Fragment () {
                     }
                 }else{
                     Toast.makeText(context, R.string.response_error, Toast.LENGTH_LONG).show()
+                    progress.isVisible = false
                 }
             }
 
             override fun onFailure(call: Call<List<Carro>>, t: Throwable) {
                 Toast.makeText(context, R.string.response_error, Toast.LENGTH_LONG).show()
+                progress.isVisible = false
             }
 
         })
@@ -149,8 +151,8 @@ class CarFragment : Fragment () {
     }
 
     fun callService(){
-        val urlBase = "https://igorbag.github.io/cars-api/cars.json"
         progress.isVisible = true
+        val urlBase = "https://igorbag.github.io/cars-api/cars.json"
         MyTask().execute(urlBase)
     }
 

@@ -28,33 +28,33 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/iv_close" />
 
+
     <EditText
-        android:id="@+id/et_preco_kmh"
+        android:id="@+id/et_preco_kwh"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:ems="10"
+        android:hint="@string/preco_kwh"
         android:inputType="numberDecimal"
         android:maxLength="10"
-        android:hint="@string/preco_por_km"
-        android:layout_marginTop="30dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/et_title"
-        />
+        app:layout_constraintTop_toBottomOf="@id/et_title" />
 
     <EditText
         android:id="@+id/et_km_percorrido"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="50dp"
         android:layout_marginTop="4dp"
         android:hint="@string/km_percorrido"
         android:inputType="numberDecimal"
         android:maxLength="10"
-        app:layout_constraintEnd_toEndOf="@id/et_preco_kmh"
-        app:layout_constraintStart_toStartOf="@id/et_preco_kmh"
-        app:layout_constraintTop_toBottomOf="@id/et_preco_kmh"
-        />
+        app:layout_constraintEnd_toEndOf="@id/et_preco_kwh"
+        app:layout_constraintStart_toStartOf="@id/et_preco_kwh"
+        app:layout_constraintTop_toBottomOf="@id/et_preco_kwh" />
+
+
 
     <Button
         android:id="@+id/btn_calcular"
@@ -73,10 +73,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
         android:textStyle="bold"
-        style="@style/TextAppearance.MaterialComponents.Subtitle2"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
         app:layout_constraintStart_toStartOf="@+id/btn_calcular"
         app:layout_constraintTop_toBottomOf="@id/btn_calcular"
         android:maxLength="4"
+        tools:text="1.0"
         />
 
 
