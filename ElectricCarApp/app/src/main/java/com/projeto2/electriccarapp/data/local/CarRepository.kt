@@ -21,8 +21,6 @@ class CarRepository(private val context : Context) {
 
         try{
 
-            findCarById(1)
-
             val dbHelper = CarsDbHelper(context )
             val db = dbHelper.writableDatabase
 
