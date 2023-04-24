@@ -7,6 +7,7 @@ object CarrosContract {
 
     object CarEntry : BaseColumns {
         const val TABLE_NAME = "car"
+        const val COLUMN_NAME_CAR_ID = "car_id"
         const val COLUMN_NAME_PRECO = "preco"
         const val COLUMN_NAME_CAR_ID = "car_id"
         const val COLUMN_NAME_BATERIA = "bateria"
