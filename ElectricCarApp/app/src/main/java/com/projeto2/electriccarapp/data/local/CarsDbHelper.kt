@@ -25,7 +25,7 @@ class CarsDbHelper(context: Context) : SQLiteOpenHelper(context, DATABASE_NAME,n
 
     companion object{
         const val DATABASE_VERSION = 1
-        const val  DATABASE_NAME = "Db_car.db"
+        const val DATABASE_NAME = "Dbcar.db"
     }
 
 

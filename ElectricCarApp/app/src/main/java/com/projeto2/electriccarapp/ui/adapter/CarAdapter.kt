@@ -10,7 +10,7 @@ import com.projeto2.electriccarapp.R
 import com.projeto2.electriccarapp.domain.Carro
 import org.w3c.dom.Text
 
-class CarAdapter (private val carros: List<Carro>):
+class CarAdapter (private val carros: List<Carro>, private val isFavoriteScreen : Boolean = false):
     RecyclerView.Adapter<CarAdapter.ViewHolder>() {
 
     var carItemListner : (Carro) -> Unit = {}
@@ -27,6 +27,9 @@ class CarAdapter (private val carros: List<Carro>):
         holder.bateria.text = carros[position].bateria
         holder.potencia.text = carros[position].potencia
         holder.recarga.text = carros[position].recarga
+        if(isFavoriteScreen){
+            holder.favorito.setImageResource(R.drawable.ic_star_selected)
+        }
         holder.favorito.setOnClickListener{
             val carro = carros[position]
             carItemListner(carro)
@@ -44,6 +47,7 @@ class CarAdapter (private val carros: List<Carro>):
             holder.favorito.setImageResource(R.drawable.ic_star_selected)
         else
             holder.favorito.setImageResource(R.drawable.ic_star)
+
     }
 
     // Pega a qtde de carros da lista

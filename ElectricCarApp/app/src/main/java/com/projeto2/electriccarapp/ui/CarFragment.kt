@@ -142,6 +142,7 @@ class CarFragment : Fragment () {
         }
     }
 
+
     fun setupLista(lista: List<Carro>){
         val carrosAdapter = CarAdapter(lista)
         listaCarros.apply {
@@ -151,7 +152,7 @@ class CarFragment : Fragment () {
         }
 
         carrosAdapter.carItemListner = { carro ->
-            val isSaved = CarRepository(requireContext()).save(carro)
+            val isSaved = CarRepository(requireContext()).saveIfNotExist(carro)
         }
 
     }
