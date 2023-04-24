@@ -120,6 +120,7 @@ class CarRepository(private val context : Context) {
 
     }
 
+
     public fun saveIfNotExist(carro: Carro){
         val car = findCarById(carro.id)
         if(car.id == ID_WHEN_NO_CAR){
@@ -201,3 +202,6 @@ class CarRepository(private val context : Context) {
         const val ID_WHEN_NO_CAR = 0
     }
 }
+
+
+
