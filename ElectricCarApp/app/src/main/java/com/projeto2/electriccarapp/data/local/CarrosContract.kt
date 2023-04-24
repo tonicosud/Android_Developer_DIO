@@ -9,7 +9,6 @@ object CarrosContract {
         const val TABLE_NAME = "car"
         const val COLUMN_NAME_CAR_ID = "car_id"
         const val COLUMN_NAME_PRECO = "preco"
-        const val COLUMN_NAME_CAR_ID = "car_id"
         const val COLUMN_NAME_BATERIA = "bateria"
         const val COLUMN_NAME_POTENCIA = "potencia"
         const val COLUMN_NAME_RECARGA = "recarga"
